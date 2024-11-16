@@ -5,3 +5,8 @@
 - Di Golang harus membuat function untuk membuat object, yang tugasnya mirip seperti Constructor, dan mengirimkan Dependency yang diperlukan melalui parameter function tersebut
 - Ketika Project semakin besar, akan sulit harus menentukan urutan object mana yang harus dibuat terlebih dahulu
 - Oleh karena itu, proses Dependecy Injection bisa dipermudah dengan memanfaatkan library
+
+## Library Dependecy Injection
+- `github.com/google/wire`
+- `github.com/uber-go/fx`
+- `github.com/golobby/container`
