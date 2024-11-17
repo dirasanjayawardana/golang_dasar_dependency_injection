@@ -37,8 +37,8 @@ func InitializedDatabaseRepository() *DatabaseRepository {
 	return nil
 }
 
+// Provider set -> untuk grouping provider, dengan menggunakan wire.NewSet()
 var fooSet = wire.NewSet(NewFooRepository, NewFooService)
-
 var barSet = wire.NewSet(NewBarRepository, NewBarService)
 
 func InitializedFooBarService() *FooBarService {
@@ -46,12 +46,18 @@ func InitializedFooBarService() *FooBarService {
 	return nil
 }
 
-// Salah
-//func InitializedHelloService() *HelloService {
-//	wire.Build(NewHelloService, NewSayHelloImpl)
-//	return nil
-//}
+// Secara default, Google wire akan menggunakan tipe data asli untuk melakukan dependency injection
+// Jika terdapat parameter berupa interface dan tidak ada privider yg return interface tersebut, maka akan error
+// Jika ingin melakukan binding inteface, yaitu memberitahu sebuah interface akan menggunakan provider tipe data apa
 
+// Contoh Injector yg salah, karena tidak binding interface
+// func InitializedHelloService() *HelloService {
+//		wire.Build(NewHelloService, NewSayHelloImpl)
+//		return nil
+// }
+
+// melakukan binding interface SayHello, dengan tipe data SayHelloImpl
+// sehingga jika ada provider yang butuh parameter SayHello, akan diinject dengan SayHelloImpl
 var helloSet = wire.NewSet(
 	NewSayHelloImpl,
 	wire.Bind(new(SayHello), new(*SayHelloImpl)),

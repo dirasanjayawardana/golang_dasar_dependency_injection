@@ -16,7 +16,7 @@
 - `go install github.com/google/wire/cmd/wire@latest`, secar otomatis akan ada file binary di `$GOPATH/bin/wire`
 - Untuk memastikan wire telah terinstall, gunakan `wire help`
 
-## Provide 
+## Provider
 - Untuk melakukan Dependecy Injection, perlu membuat function Constructor pada struct
 - Untuk penamaannya biasanya dengan `NewNamaStructnya()`
 - Dalam Google wire, ini disebut Provider
@@ -36,6 +36,14 @@
 ## Error
 - Google wire bisa mendeteksi error pada Provider
 - Dengan menambahkan return value kedua berupa error pada Injector dan Provider
+
+## Provider Set
+- Provider set -> untuk grouping provider, dengan menggunakan `wire.NewSet()`
+
+## Binding Interface
+- Secara default, Google wire akan menggunakan tipe data asli untuk melakukan dependency injection
+- Jika terdapat parameter berupa interface dan tidak ada privider yg return interface tersebut, maka akan error
+- Jika ingin melakukan binding inteface, yaitu memberitahu sebuah interface akan menggunakan provider tipe data apa
 
 ## Step
 - simple/simple.go
