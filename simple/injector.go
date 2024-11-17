@@ -9,13 +9,25 @@ import (
 	"os"
 )
 
+// Injector adalah sebuah function Constructor, namun isinya berupa konfigurasi untuk Google Wire
+// Injector tidak akan digunakan oleh program dalam project, hanya untuk melakukan auto generate kode Dependency Injection
+// Untuk membuat Injector, harus menambahkan komentar `//go:build wireinject` dan `// +build wireinject`
+
+// Injector akan return Dependecy terakhir yang dibutuhkan dan error jika terjadi error di Provider
+// Setiap parameter di Provider akan diinject berdasarkan tipe datanya, akan dicari dari return constructor di wire.Build()
+// jika tidak menemukan tipedata yang cocok, maka parameter di Provider akan diinject dari parameter Injector
 func InitializedService(isError bool) (*SimpleService, error) {
+	// memberi tahu goole wire, function provider mana yang akan digunakan
 	wire.Build(
 		NewSimpleRepository, NewSimpleService,
 	)
+	// cukup returnkan nil, karena semua code yg ada di function ini akan ditimpa oleh google wire ketika di generate
 	return nil, nil
 }
 
+// Multiple Binding, harus menggunakan alias untuk tipe data yang sama
+// Karena setiap parameter di Provider akan diinject berdasarkan tipe datanya
+// jika ada Provider yg return tipe data sama, maka akan error
 func InitializedDatabaseRepository() *DatabaseRepository {
 	wire.Build(
 		NewDatabaseMongoDB,

@@ -5,6 +5,7 @@ type Database struct {
 }
 
 type DatabasePostgreSQL Database
+
 type DatabaseMongoDB Database
 
 func NewDatabaseMongoDB() *DatabaseMongoDB {

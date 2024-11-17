@@ -2,6 +2,10 @@ package simple
 
 import "errors"
 
+// Untuk melakukan Dependecy Injection, perlu membuat function Constructor pada struct
+// Untuk penamaannya biasanya dengan `NewNamaStructnya()`
+// Dalam Google wire, ini disebut Provider
+
 type SimpleRepository struct {
 	Error bool
 }
