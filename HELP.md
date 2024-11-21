@@ -45,6 +45,15 @@
 - Jika terdapat parameter berupa interface dan tidak ada privider yg return interface tersebut, maka akan error
 - Jika ingin melakukan binding inteface, yaitu memberitahu sebuah interface akan menggunakan provider tipe data apa
 
+## Struct Provider
+- Struct Provider -> Struct yang bisa dijadikan sebagai Provider (jarang dilakukan)
+- Secara otomatis Struct tersebut akan menjadi Provider
+- Bisa melakukan dependency injection terhadap field yg ada didalam struct, jika ingin inject semua menggunakan tanda *
+
+## Binding Values
+- Binding Values -> Melakukan dependency injection terhadap value yang sudah ada, tanpa harus membuat Provider 
+- Dengan cara langsung menyebutkan value dari objectnya, tanpa menggunakan provider
+
 ## Step
 - simple/simple.go
 - simple/injector.go

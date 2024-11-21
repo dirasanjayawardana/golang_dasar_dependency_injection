@@ -68,6 +68,9 @@ func InitializedHelloService() *HelloService {
 	return nil
 }
 
+// Struct Provider -> Struct yang bisa dijadikan sebagai Provider (jarang dilakukan)
+// Secara otomatis Struct tersebut akan menjadi Provider
+// Bisa melakukan dependency injection terhadap field yg ada didalam struct, jika ingin inject semua menggunakan tanda *
 func InitializedFooBar() *FooBar {
 	wire.Build(NewFoo, NewBar, wire.Struct(new(FooBar), "*"))
 	return nil
@@ -76,13 +79,16 @@ func InitializedFooBar() *FooBar {
 var fooValue = &Foo{}
 var barValue = &Bar{}
 
+// Binding Values -> Melakukan dependency injection terhadap value yang sudah ada, tanpa harus membuat Provider 
+// Dengan cara langsung menyebutkan value dari objectnya, tanpa menggunakan provider
 func InitializedFooBarUsingValue() *FooBar {
 	wire.Build(wire.Value(fooValue), wire.Value(barValue), wire.Struct(new(FooBar), "*"))
 	return nil
 }
 
+// binding sekaligus menyebutkan interface yg digunakan
 func InitializedReader() io.Reader {
-	wire.Build(wire.InterfaceValue(new(io.Reader), os.Stdin))
+	wire.Build(wire.InterfaceValue(new(io.Reader), os.Stdin)) // interface io.Reader akan inject dengan os.Stdin
 	return nil
 }
 
