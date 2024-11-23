@@ -92,6 +92,7 @@ func InitializedReader() io.Reader {
 	return nil
 }
 
+// membuat provider dari sebuah field dengan mengambil valuenya dari porvider lain, dengan wire.FieldsOf()
 func InitializedConfiguration() *Configuration {
 	wire.Build(
 		NewApplication,
@@ -100,6 +101,8 @@ func InitializedConfiguration() *Configuration {
 	return nil
 }
 
+// Provider bisa return function untuk melakukan proses cleanup setelah object dibuat
+// closure akan otomatis dipanggil dalam proses cleanup oleh Google Wire
 func InitializedConnection(name string) (*Connection, func()) {
 	wire.Build(NewConnection, NewFile)
 	return nil, nil

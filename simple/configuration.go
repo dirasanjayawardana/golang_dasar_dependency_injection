@@ -11,7 +11,7 @@ type Application struct {
 func NewApplication() *Application {
 	return &Application{
 		Configuration: &Configuration{
-			Name: "Programmer Zaman Now",
+			Name: "Dira Sanjaya Wardana",
 		},
 	}
 }

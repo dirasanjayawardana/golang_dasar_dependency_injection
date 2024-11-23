@@ -2,6 +2,9 @@ package simple
 
 import "fmt"
 
+// Provider bisa return function untuk melakukan proses cleanup setelah object dibuat
+// closure akan otomatis dipanggil dalam proses cleanup oleh Google Wire
+
 type File struct {
 	Name string
 }
